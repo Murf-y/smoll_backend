@@ -1,7 +1,7 @@
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { INestApplication } from '@nestjs/common'
 
-const title = 'Smoll Backend API'
+const title = 'Smoll API'
 
 /**
  * Setup swagger in the application

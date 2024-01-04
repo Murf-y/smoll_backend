@@ -22,7 +22,6 @@ const configSchema = Joi.object({
  * @throws {Error} Description of the exception.
  */
 export function validateConfig(config: Record<string, any>) {
-  console.log(config)
   const { error, value } = configSchema.validate(config, {
     allowUnknown: true,
     cache: true,

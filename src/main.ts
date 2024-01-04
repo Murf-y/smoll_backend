@@ -62,7 +62,6 @@ async function bootstrap() {
   app.useGlobalInterceptors(new HttpResponseInterceptor())
 
   // Security Measures
-  app.enable('trust proxy')
   app.use(
     helmet({
       contentSecurityPolicy: {
@@ -78,7 +77,7 @@ async function bootstrap() {
 
   // localhost:3000 is NextJS frontend
   // TODO replace it with list of allowed cros origin from .env
-  const APP_URL = process.env.APP_URL || 'http://localhost:3000'
+  const APP_URL = process.env.APP_URL || 'http://localhost:5173'
   app.enableCors({
     origin: APP_URL,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
@@ -88,10 +87,10 @@ async function bootstrap() {
   app.use(compression())
 
   // Global rate limiter
-  // limit 1 ip for 2000 request under 15 minutes
+  // limit 1 ip for 150 request under 15 minutes
   // this is for preventing brute force attack
   // routes with @Throttle() decorator will be ignored
-  const maxAllowedRequest = 2000
+  const maxAllowedRequest = 150
   const durationForMaxAllowedRequest = 15 * 60 * 1000
   app.use(
     rateLimit({
